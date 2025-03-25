@@ -1,38 +1,221 @@
+html,
+body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.header {
+  background-color: var(--foreground);
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+  flex-direction:column;
+  align-items: center;
+  justify-content: space-around;
+  align-content: center;
+  font-size: 1.1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.header > div label {
+  font-size: 1.5em;
+}
+
+.header > div select, .header > div input {
+  padding: 0.4em;
+  border-radius: 0.5em;
+  background-color: var(--background);
+  border: none;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+}
+
+.footer {
+  background-color: var(--foreground);
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.footer > * {
+  width: 100%;
+  height: 3em;
+}
+
+.footer > button {
+  background-color: grey;
+  border: none;
+  border-radius: 0;
   color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.footer > button:hover {
+  background-color: darkgray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer > div {
+  display: flex;
+}
+
+.footer > div > * {
+  flex: 1;
+}
+
+.footer > div > button {
+  background-color: lightgray;
+  border: none;
+  border-radius: 0;
+  color: black;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.footer > div > button:hover {
+  background-color: darkgray;
+}
+
+.task, .category {
+  width: calc(100% - 2em);
+  padding: 0.5em;
+  border-radius: 1em;
+  background-color: var(--foreground);
+  margin: 0.5em auto;
+  max-width: 1500px;
+  transition-duration: 0.3s;
+  border-left: 0.5em solid;
+  position: relative;
+}
+
+.task:hover, .category:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: var(--active);
+}
+
+.active {
+  background: var(--active) !important;
+}
+
+.task button, .category button {
+  border: none;
+  background-color: var(--background);
+  border-radius: 0.7em;
+  margin: 0.2em;
+  padding: 0.7em 1.3em;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.task button:hover, .category button:hover {
+  background-color: var(--foreground);
+}
+
+.category span, .task span {
+  font-size: 1.2em;
+  font-weight: bold;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.popupContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.popupContainer .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: var(--foreground);
+}
+
+.popup {
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+  padding: 1em;
+  flex-direction: column;
+  width: 24em;
+  max-width: 95%;
+}
+
+.popup button {
+  background-color: var(--foreground);
+  border: none;
+  border-radius: 0.7em;
+  margin: 0.2em;
+  padding: 0.7em 1.3em;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.popup label {
+  display: inline-block;
+}
+
+.popup button:hover {
+  background-color: var(--active);
+}
+
+.popup input, .popup select {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: var(--foreground);
+  border: none;
+  font-size: 1em;
+  margin-left: 0.5em;
+  display: block;
+  margin: 0.5em 0;
+}
+
+:root {
+  --background: white;
+  --foreground: rgb(228, 228, 228);
+  --active: rgb(245, 245, 245);
 }
